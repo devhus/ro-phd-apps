@@ -3,9 +3,10 @@ $success: #31bcaf;
 $warning: #feca76;
 $danger: #f26b73;
 
-$theme-colors: (
-  "primary": $primary,
+$theme-colors: ("primary": $primary,
   "success": $success,
   "warning": $warning,
   "danger": $danger,
 );
+
+$form-range-thumb-bg: $success;

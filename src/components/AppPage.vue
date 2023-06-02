@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<{
 
   &.abg-secondary {
     background-color: var(--bs-warning);
-    background-image: url("assets/img/bg-primary.png");
+    background-image: url("assets/img/bg-secondary.png");
   }
 }
 </style>
