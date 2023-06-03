@@ -19,6 +19,11 @@
           App 3
         </RouterLink>
       </div>
+      <div class="col">
+        <RouterLink :to="{ name: 'app-4-1' }">
+          App 4
+        </RouterLink>
+      </div>
     </div>
   </div>
 </template>

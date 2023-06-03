@@ -813,6 +813,7 @@ onMounted(() => {
     gap: 3px;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0;
 
     li {
       flex-grow: 1;

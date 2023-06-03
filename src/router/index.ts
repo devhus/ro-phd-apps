@@ -62,6 +62,27 @@ const router = createRouter({
         },
       ]
     },
+    {
+      path: '/app4',
+      name: 'app-4',
+      children: [
+        {
+          path: '',
+          name: 'app-4-1',
+          component: () => import(`../views/app-4/Page1.vue`)
+        },
+        {
+          path: '',
+          name: 'app-4-2',
+          component: () => import(`../views/app-4/Page2.vue`)
+        },
+        {
+          path: '',
+          name: 'app-4-3',
+          component: () => import(`../views/app-4/Page3.vue`)
+        }
+      ]
+    },
   ]
 })
 
