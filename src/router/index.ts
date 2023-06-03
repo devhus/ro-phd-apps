@@ -30,6 +30,38 @@ const router = createRouter({
         }
       ]
     },
+    {
+      path: '/app2',
+      name: 'app-2',
+      children: [
+        {
+          path: '',
+          name: 'app-2-1',
+          component: () => import(`../views/app-2/Page1.vue`)
+        },
+        {
+          path: '',
+          name: 'app-2-2',
+          component: () => import(`../views/app-2/Page2.vue`)
+        },
+      ]
+    },
+    {
+      path: '/app3',
+      name: 'app-3',
+      children: [
+        {
+          path: '',
+          name: 'app-3-1',
+          component: () => import(`../views/app-3/Page1.vue`)
+        },
+        {
+          path: '',
+          name: 'app-3-2',
+          component: () => import(`../views/app-3/Page2.vue`)
+        },
+      ]
+    },
   ]
 })
 
