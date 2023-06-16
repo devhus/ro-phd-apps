@@ -14,28 +14,10 @@
             </RouterLink>
           </div>
           <div v-else class="row g-2">
-            <div class="col-6">
-              <button type="button" class="btn btn-danger  w-100" :disabled="disabledAnswers.includes('simetrie')"
-                @click="answer('simetrie')">
-                Simetrie
-              </button>
-            </div>
-            <div class="col-6">
-              <button type="button" class="btn btn-danger  w-100" :disabled="disabledAnswers.includes('repetitie')"
-                @click="answer('repetitie')">
-                Repetitie
-              </button>
-            </div>
-            <div class="col-6">
-              <button type="button" class="btn btn-danger  w-100" :disabled="disabledAnswers.includes('ritm_artistic')"
-                @click="answer('ritm_artistic')">
-                Ritm Artistic
-              </button>
-            </div>
-            <div class="col-6">
-              <button type="button" class="btn btn-danger  w-100" :disabled="disabledAnswers.includes('alternanta')"
-                @click="answer('alternanta')">
-                Alternanta
+            <div v-for="(ans, key) in ANSWERS" class="col-6" :key="key">
+              <button type="button" class="btn btn-danger  w-100" :disabled="disabledAnswers.includes(key)"
+                @click="answer(key)">
+                {{ ans }}
               </button>
             </div>
           </div>
@@ -58,6 +40,12 @@ const IMAGE_ANSWERS = [
   'ritm_artistic',
   'simetrie',
 ];
+const ANSWERS = {
+  simetrie: 'Simetrie',
+  repetitie: 'Repetitie',
+  ritm_artistic: 'Ritm Artistic',
+  alternanta: 'Alternanta',
+}
 
 const disabledAnswers = ref<string[]>([]);
 const imageId = ref<number>(+(route.query?.imageId ?? 0));

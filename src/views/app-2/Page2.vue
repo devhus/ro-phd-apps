@@ -1,32 +1,94 @@
-
 <template>
-  <app-page bg="secondary">
-    <div class="container py-5 h-100">
-      <div class="d-flex gap-3 flex-column h-100">
-        <div class="flex-grow-0">
-          <p class="h5 mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+  <app-page>
+    <div class="h-100">
+      <div class="d-flex flex-column h-100">
+        <div class="images-container flex-grow-1 bg-white text-dark">
+          <img class="image-item" :src="`assets/apps/app2/${imageId}.png`">
         </div>
-
-        <div class="flex-grow-1 border bg-white">
-          <img class="image-preview"
-            :src="`assets/apps/app2/img ${$route.query?.containerId}/${$route.query?.chosenImgId}.png`">
-        </div>
-
-        <div class="flex-grow-0 text-end">
-          <RouterLink
-            :to="{ name: !$route.query?.containerId || +$route.query.containerId >= 6 ? 'app-2-1' : 'app-2-2', query: { containerId: +($route.query?.containerId ?? 0) + 1 } }"
-            class="btn btn-success btn-lg">
-            next
-          </RouterLink>
+        <div class="flex-grow-0 py-3 container bg-warning">
+          <div v-if="correctAnswerClicked">
+            <h4 class="text-center text-success">Correct Answer!</h4>
+            <RouterLink v-if="imageId < IMAGE_ANSWERS.length" class="btn btn-success w-100"
+              :to="{ name: 'app-2-2', query: { imageId: imageId + 1 } }">
+              Next
+            </RouterLink>
+          </div>
+          <div v-else class="row g-2">
+            <div v-for="(ans, key) in ANSWERS" class="col" :key="key">
+              <button type="button" class="btn btn-danger  w-100" :disabled="disabledAnswers.includes(key)"
+                @click="answer(key)">
+                {{ ans }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </app-page>
 </template>
-<style lang="scss" scoped>
-.image-preview {
+
+<script setup lang="ts">
+import { computed, ref, watch } from 'vue';
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+const IMAGE_ANSWERS = [
+  'calitativ',
+  'cantitativ',
+  'clar_obscur',
+  'complementar',
+  'culorilor_in_sine',
+  'rece_cald',
+  'simultan',
+];
+const ANSWERS = {
+  calitativ: 'Calitativ',
+  clar_obscur: 'Clar obscur',
+  rece_cald: 'Rece cald',
+  complementar: 'Complementar',
+  cantitativ: 'Cantitativ',
+  simultan: 'Simultan',
+  culorilor_in_sine: 'Culorilor in sine',
+}
+
+const disabledAnswers = ref<string[]>([]);
+const imageId = ref<number>(+(route.query?.imageId ?? 0));
+const correctAnswerClicked = ref(false);
+const correctAnswer = computed(() => IMAGE_ANSWERS[imageId.value])
+
+const answer = (val: string) => {
+  if (val === correctAnswer.value) {
+    correctAnswerClicked.value = true;
+    return;
+  }
+  disabledAnswers.value.push(val);
+}
+
+const reset = () => {
+  disabledAnswers.value = [];
+  correctAnswerClicked.value = false;
+}
+
+watch(() => route.query?.imageId, (imgId) => {
+  imageId.value = +(imgId ?? 0);
+  reset();
+})
+
+</script>
+
+<style scoped lang="scss">
+.images-container {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  display: block;
+
+  .image-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
 }
 </style>

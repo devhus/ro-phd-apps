@@ -103,14 +103,14 @@ const router = createRouter({
       name: 'app-6',
       children: [
         {
-          path: ':level',
-          name: 'app-6-1',
+          path: '',
+          name: 'app-6-1-home',
           component: () => import(`../views/app-6/Page1.vue`)
         },
         {
           path: ':level',
-          name: 'app-6-2',
-          component: () => import(`../views/app-6/Page2.vue`)
+          name: 'app-6-1',
+          component: () => import(`../views/app-6/Page1.vue`)
         },
       ]
     },

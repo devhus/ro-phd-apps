@@ -1,9 +1,10 @@
 <template>
   <app-page>
     <div class="h-100">
-      <div class="d-flex flex-column h-100 align-items-center justify-content-center bg-black">
-        <div class="flex-grow-0 bg-white">
-          <div class="game-frame">
+      <div class="d-flex flex-column h-100 align-items-center justify-content-center">
+        <div class="flex-grow-0">
+          <span v-if="loading">LOADING...</span>
+          <div v-show="!loading" class="game-frame">
             <div class="bg">
               <img class="bg-img" :src="`/assets/apps/app6/${currentFrameBg}.png`">
             </div>
@@ -40,11 +41,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 
+const loading = ref(true);
 const completed = ref(false);
 const level = computed<number>(() => +(route.params.level ?? 1));
 const selectedEquipments = ref<Record<string, Record<string, string>>>({
@@ -70,7 +72,7 @@ const levelCharacters: Record<number, string[]> = {
   2: ['archer']
 }
 
-const equipments = {
+const equipments: Record<string, Record<string, Record<string, any>>> = {
   level1: {
     boy: {
       hair: {
@@ -252,6 +254,12 @@ const equipmentClicked = (character: string, groupKey: string) => {
   const nextKey = `${currentKey.slice(0, currentKey.length - 2)}-${currentKeyValue + 1}`;
   selectedEquipments.value[character][groupKey] = nextKey;
 }
+
+onMounted(() => {
+  setTimeout(() => {
+    loading.value = false;
+  }, 1000);
+})
 </script>
 
 <style scoped lang="scss">
