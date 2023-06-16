@@ -9,12 +9,12 @@
 
         <div class="flex-grow-1 border bg-white">
           <img class="image-preview"
-            :src="`assets/apps/app1/img ${$route.query?.containerId}/${$route.query?.chosenImgId}.png`">
+            :src="`assets/apps/app2/img ${$route.query?.containerId}/${$route.query?.chosenImgId}.png`">
         </div>
 
         <div class="flex-grow-0 text-end">
           <RouterLink
-            :to="{ name: !$route.query?.containerId || +$route.query.containerId >= 6 ? 'app-1-1' : 'app-1-2', query: { containerId: +($route.query?.containerId ?? 0) + 1 } }"
+            :to="{ name: !$route.query?.containerId || +$route.query.containerId >= 6 ? 'app-2-1' : 'app-2-2', query: { containerId: +($route.query?.containerId ?? 0) + 1 } }"
             class="btn btn-success btn-lg">
             next
           </RouterLink>

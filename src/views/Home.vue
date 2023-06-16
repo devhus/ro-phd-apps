@@ -6,7 +6,7 @@
     <div class="row g-3">
       <div class="col">
         <RouterLink :to="{ name: 'app-1-1' }">
-          App 2
+          App 1
         </RouterLink>
       </div>
       <div class="col">
@@ -22,6 +22,16 @@
       <div class="col">
         <RouterLink :to="{ name: 'app-4-1' }">
           App 4
+        </RouterLink>
+      </div>
+      <div class="col">
+        <RouterLink :to="{ name: 'app-5-1' }">
+          App 5
+        </RouterLink>
+      </div>
+      <div class="col">
+        <RouterLink :to="{ name: 'app-6-1', params: { level: 1 } }">
+          App 6
         </RouterLink>
       </div>
     </div>
