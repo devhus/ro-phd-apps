@@ -643,7 +643,6 @@ const onWaveBtnClick = (e) => {
 }
 
 const shakeEvent = new Shake()
-shakeEvent.start()
 
 const clearScr = () => {
   pause()
@@ -713,6 +712,7 @@ const keyboardMappings = () => {
 
 
 onMounted(() => {
+  shakeEvent.start()
   svg = mpMain.value
   clientRect = svg.getBoundingClientRect()
 
