@@ -5,7 +5,7 @@
         <div class="images-container flex-grow-1 bg-white text-dark">
           <template v-for="imgId in 5" :key="imgId">
             <img v-show="imgId == sliderValue" class="image-item"
-              :src="`assets/apps/app1/img ${currentContainerId}/${imgId}.png`">
+              :src="`assets/apps/app1/img${currentContainerId}/${imgId}.jpg`">
           </template>
         </div>
         <div class="flex-grow-0 py-3 container bg-warning">

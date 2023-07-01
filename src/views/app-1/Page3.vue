@@ -9,7 +9,7 @@
 
         <div class="flex-grow-1 border bg-white">
           <img class="image-preview"
-            :src="`assets/apps/app1/img ${$route.query?.containerId}/${$route.query?.chosenImgId}.png`">
+            :src="`assets/apps/app1/img${$route.query?.containerId}/${$route.query?.chosenImgId}.jpg`">
         </div>
 
         <div class="flex-grow-0 text-end">
